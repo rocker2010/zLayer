@@ -1,0 +1,53 @@
+.text_title {
+	font-size: 18px;
+	font-weight: bold;
+	margin: 0;
+}
+
+.text_img {
+	width: 100%;
+	margin-top: 10px;
+}
+
+.text_content {
+	display: none;
+}
+
+.zLayerShow,
+.zLayerMask {
+	transition: all 0.5s;
+	position: fixed;
+}
+
+.zLayerMask {
+	background: #000;
+	opacity: 0;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+}
+
+.zLayerShow .text_content {
+	display: block;
+	margin-top: 10px;
+	max-height: 400px;
+	overflow-y: auto;
+}
+
+.zLayerShow .text_content p {
+	margin: 0 0 5px 0;
+}
+
+.zLayerShow .text_title .closeBtn {
+	display: block;
+	color: #333333;
+	float: right;
+	width: 23px;
+	height: 23px;
+	text-align: center;
+	line-height: 23px;
+	background: rgba(255, 255, 255, 0.3);
+	border-radius: 50%;
+	cursor: pointer;
+}
