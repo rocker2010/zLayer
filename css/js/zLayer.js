@@ -25,11 +25,12 @@ zLayers.prototype = {
 		LayerList = this.zLayerList
 
 		function showLayer(that) {
-			that.style.cssText = "position:fixed;z-index:999999;width:" + Layerwidth +"px;box-shadow: 8px 16px 32px #3c3c3c;"
 			that.classList.add("zLayerShow");
+			that.style.cssText = "position:fixed;z-index:999999;width:" + Layerwidth +"px;box-shadow: 8px 16px 32px #3c3c3c;"
+			var showBefHeight = that.offsetHeight;
 			that.getElementsByClassName("text_title")[0].append(closebtn);
 			var showHeight = that.offsetHeight;
-			that.offsetHeight=211;
+			that.style.height=LayerHeight+"px";
 			var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
 			var layerTop = document.querySelector(".zLayerPlace").offsetTop - scrollTop;
 			that.style.cssText = that.style.cssText + "top:" + layerTop + "px;"
