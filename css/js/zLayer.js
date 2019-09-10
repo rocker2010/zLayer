@@ -57,7 +57,7 @@ zLayers.prototype = {
 			var layerTop = document.querySelector(".zLayerPlace").offsetTop - scrollTop;
 			that.style.cssText = that.style.cssText + "top:" + layerTop + "px;"
 			setTimeout(function() {
-				that.style.cssText = that.style.cssText + "top:50%;transform:translateY(-50%);height:" + showHeight + "px"
+				that.style.cssText = that.style.cssText + "top:50%;transform:translateY(-50%);-ms-transform: translateX(-50%);-moz-transform: translateX(-50%);-webkit-transform: translateX(-50%);-o-transform: translateX(-50%);height:" + showHeight + "px"
 			}, 400)
 		};
 
