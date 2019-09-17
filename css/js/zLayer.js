@@ -25,7 +25,6 @@ function zLayers(selector) {
 	this.zLayerWidth = this.zLayer.querySelector('li').offsetWidth;
 	this.zLayerHeight = this.zLayer.querySelector('li').offsetHeight;
 	this.zLayerListLength = this.zLayerList.length;
-
 	this.init();
 }
 
@@ -39,7 +38,7 @@ zLayers.prototype = {
 				e.preventDefault();
 			});
 		}
-
+		
 		var Layerwidth = this.zLayerWidth
 		LayerHeight = this.zLayerHeight
 		ListLength = this.zLayerListLength
@@ -48,7 +47,7 @@ zLayers.prototype = {
 		// 点击显示详细函数
 		function showLayer(that) {
 			that.classList.add("zLayerShow");
-			that.style.cssText = "position:fixed;z-index:999999;width:" + Layerwidth + "px;box-shadow: 8px 16px 32px #3c3c3c;"
+			that.style.cssText = that.style.cssText + "z-index:999999;width:" + Layerwidth + "px;box-shadow: 8px 16px 32px #3c3c3c;"
 			var showBefHeight = that.offsetHeight;
 			that.getElementsByClassName("text_title")[0].append(closebtn);
 			var showHeight = that.offsetHeight;
@@ -57,7 +56,7 @@ zLayers.prototype = {
 			var layerTop = document.querySelector(".zLayerPlace").offsetTop - scrollTop;
 			that.style.cssText = that.style.cssText + "top:" + layerTop + "px;"
 			setTimeout(function() {
-				that.style.cssText = that.style.cssText + "top:50%;transform:translateY(-50%);-ms-transform: translateY(-50%);-moz-transform: translateY(-50%);-webkit-transform: translateY(-50%);-o-transform: translateY(-50%);height:" + showHeight + "px"
+				that.style.cssText = that.style.cssText + "left: 50%;top:50%;transform:translate(-50%,-50%);-ms-transform: translate(-50%,-50%);-moz-transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%);-o-transform: translate(50%);height:" + showHeight + "px"
 			}, 400)
 		};
 
@@ -71,10 +70,11 @@ zLayers.prototype = {
 			var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
 			var layerTop = document.querySelector(".zLayerPlace").offsetTop - scrollTop;
 			document.querySelector(".zLayerMask").style.cssText = "opacity:0;"
-			console.log(document.documentElement.scrollTop);
+			// console.log(document.documentElement.scrollTop);
+			console.log(document.querySelector(".zLayerPlace").getBoundingClientRect().left);
 			setTimeout(function() {
 				thisDiv.style.cssText = thisDiv.style.cssText + "top:" + layerTop +
-					"px;transform:none;box-shadow: rgb(60, 60, 60) 0 0 0;";
+					"px;box-shadow: rgb(60, 60, 60) 0 0 0;transform: none;left:"+document.querySelector(".zLayerPlace").getBoundingClientRect().left+"px";
 			}, 200);
 			setTimeout(function() {
 				thisDiv.style.cssText = thisDiv.style.cssText + "height: " + document.querySelector(".zLayerPlace").offsetHeight +
@@ -97,12 +97,12 @@ zLayers.prototype = {
 				node.classList.add("zLayerPlace");
 				node.style.height = LayerHeight + "px";
 				that.parentNode.insertBefore(node, that);
-				that.style.position = "fixed";
+				that.style.cssText = "position:fixed;left:"+node.getBoundingClientRect().left+"px";
 				showLayer(that);
 				that.insertAdjacentHTML("afterend", "<div class='zLayerMask'></div>");
 				setTimeout(function() {
 					document.querySelector(".zLayerMask").style.cssText = "opacity: 0.6;"
-				}, 400);
+				}, 600);
 				document.querySelector("body").style.overflow = "hidden";
 				that.onclick = null;
 			}
@@ -123,7 +123,7 @@ zLayers.prototype = {
 				node.classList.add("zLayerPlace");
 				node.style.height = LayerHeight + "px";
 				that.parentNode.insertBefore(node, that);
-				that.style.position = "fixed";
+				that.style.cssText = "position:fixed;left:"+node.getBoundingClientRect().left+"px";
 				showLayer(that);
 				that.insertAdjacentHTML("afterend", "<div class='zLayerMask'></div>");
 				setTimeout(function() {
